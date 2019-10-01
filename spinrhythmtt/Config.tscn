@@ -1,0 +1,125 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Config.gd" type="Script" id=1]
+
+[node name="Config" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -2044.0
+margin_bottom = -917.0
+script = ExtResource( 1 )
+
+[node name="OptionsContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="HostContainer" type="HSplitContainer" parent="OptionsContainer"]
+margin_right = 226.0
+margin_bottom = 24.0
+dragger_visibility = 1
+
+[node name="HostLabel" type="Label" parent="OptionsContainer/HostContainer"]
+margin_top = 5.0
+margin_right = 30.0
+margin_bottom = 19.0
+text = "Host"
+
+[node name="HostField" type="LineEdit" parent="OptionsContainer/HostContainer"]
+margin_left = 42.0
+margin_right = 226.0
+margin_bottom = 24.0
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="PortContainer" type="HSplitContainer" parent="OptionsContainer"]
+margin_top = 28.0
+margin_right = 226.0
+margin_bottom = 52.0
+dragger_visibility = 1
+
+[node name="PortLabel" type="Label" parent="OptionsContainer/PortContainer"]
+margin_top = 5.0
+margin_right = 30.0
+margin_bottom = 19.0
+text = "Port "
+
+[node name="PortField" type="SpinBox" parent="OptionsContainer/PortContainer"]
+margin_left = 42.0
+margin_right = 226.0
+margin_bottom = 24.0
+max_value = 65536.0
+
+[node name="RefreshContainer" type="HSplitContainer" parent="OptionsContainer"]
+margin_top = 56.0
+margin_right = 226.0
+margin_bottom = 80.0
+dragger_visibility = 1
+
+[node name="RefreshLabel" type="Label" parent="OptionsContainer/RefreshContainer"]
+margin_top = 5.0
+margin_right = 48.0
+margin_bottom = 19.0
+text = "Refresh"
+
+[node name="RefreshField" type="SpinBox" parent="OptionsContainer/RefreshContainer"]
+margin_left = 60.0
+margin_right = 226.0
+margin_bottom = 24.0
+min_value = 30.0
+max_value = 1000.0
+value = 30.0
+suffix = " Hz"
+
+[node name="SideContainer" type="HSplitContainer" parent="OptionsContainer"]
+margin_top = 84.0
+margin_right = 226.0
+margin_bottom = 104.0
+dragger_visibility = 1
+
+[node name="SideLabel" type="Label" parent="OptionsContainer/SideContainer"]
+margin_top = 3.0
+margin_right = 27.0
+margin_bottom = 17.0
+text = "Side"
+
+[node name="SideOption" type="OptionButton" parent="OptionsContainer/SideContainer"]
+margin_left = 39.0
+margin_right = 226.0
+margin_bottom = 20.0
+text = "Left"
+items = [ "Left", null, false, 0, null, "Right", null, false, 1, null ]
+selected = 0
+
+[node name="ColorContainer" type="HSplitContainer" parent="OptionsContainer"]
+margin_top = 108.0
+margin_right = 226.0
+margin_bottom = 128.0
+dragger_visibility = 1
+
+[node name="ColorLabel" type="Label" parent="OptionsContainer/ColorContainer"]
+margin_top = 3.0
+margin_right = 33.0
+margin_bottom = 17.0
+text = "Color"
+
+[node name="ColorSelect" type="ColorPickerButton" parent="OptionsContainer/ColorContainer"]
+margin_left = 45.0
+margin_right = 226.0
+margin_bottom = 20.0
+
+[node name="Button" type="Button" parent="OptionsContainer"]
+margin_top = 132.0
+margin_right = 226.0
+margin_bottom = 152.0
+text = "Apply"
+
+[connection signal="text_changed" from="OptionsContainer/HostContainer/HostField" to="." method="save_value" binds= [ "general", "host" ]]
+[connection signal="value_changed" from="OptionsContainer/PortContainer/PortField" to="." method="save_value" binds= [ "general", "port" ]]
+[connection signal="value_changed" from="OptionsContainer/RefreshContainer/RefreshField" to="." method="save_value" binds= [ "general", "refresh" ]]
+[connection signal="item_selected" from="OptionsContainer/SideContainer/SideOption" to="." method="save_value" binds= [ "style", "side" ]]
+[connection signal="color_changed" from="OptionsContainer/ColorContainer/ColorSelect" to="." method="save_value" binds= [ "style", "color" ]]
+[connection signal="pressed" from="OptionsContainer/Button" to="." method="apply_config"]
