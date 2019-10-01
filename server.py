@@ -11,11 +11,11 @@ knob_max = 0x8000
 
 def main():
     # Parse command line arguments
-    parser = argparse.ArgumentParser(description='Host a webserver for Spin Rhythm controller')
-    parser.add_argument('--host', default='0.0.0.0', help='The outgoing IP address. Leave default to open for all networks.')
-    parser.add_argument('-p', '--port', default=14854, type=int, help='The webserver port. The default is the same as the android app.')
-    parser.add_argument('-m', '--monitor', default=0, type=int, help='Index of the monitor you want to use for mouse movement, starting at 0.')
-    parser.add_argument('-s', '--sensitivity', default=0.5, type=float, help='Sensitivity of the knobs.')
+    parser = argparse.ArgumentParser(description='Host a webserver for Android Spin Rhythm controller. Source: https://github.com/pckv/spinrhythmtt')
+    parser.add_argument('--host', default='0.0.0.0', help='The outgoing IP address. Leave default to open for all networks (0.0.0.0)')
+    parser.add_argument('-p', '--port', default=14854, type=int, help='The webserver port. Default port is 14854')
+    parser.add_argument('-m', '--monitor', default=0, type=int, help='Index of the monitor you want to use for mouse movement, starting at 0')
+    parser.add_argument('-s', '--sensitivity', default=0.5, type=float, help='Sensitivity of the knobs as a floating point number. A sensitivity of 1 means the cursor will wrap around the screen after 1 full rotation. Default sensitivity is 0.5')
     args = parser.parse_args()
 
     monitor = list(screeninfo.get_monitors())[args.monitor]
