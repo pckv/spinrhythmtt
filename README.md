@@ -18,5 +18,4 @@
 If the python script is running, the knobs in the Android app should tweak the joystick of your vJoy device.
   
 ## Todo
-It would be convenient if an APK build was included in a release, but currently the IP address is hardcoded in the source 
-file. The application should perhaps provide an input box for IP and port configuration on startup, or a configuration file.
+Make executable of the python script.
