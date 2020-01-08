@@ -3,7 +3,7 @@
 ### Server script
   Install python requirements
   ```
-  python -m pip -r requirements.txt
+  python -m pip install -r requirements.txt
   ```
   
   Run the server.py script with Python 3+
